@@ -6,12 +6,12 @@ if op: import winsound
 from concurrent.futures import ThreadPoolExecutor
 from timeit import default_timer
 import time
-
+import pyautogui
 import pandas as pd
 import requests
-
+import random
 from plyer import notification
-
+import pygetwindow as gw
 c = requests.get("https://api.hypixel.net/skyblock/auctions?page=0")
 resp = c.json()
 now = resp['lastUpdated']
@@ -21,7 +21,7 @@ results = []
 prices = {}
 
 # stuff to remove
-REFORGES = [" ✦", "⚚ ", "◆ "," ✪", "✪","➋", "➌","➎", "Extremely ","Zooming ", "Salty ","Fortunate ", "➊","Menacing ","Very ","Festive ","Astute ","Blended ","Thicc ", "Sturdy ", "Glistening ", "Honored ","Rugged ","Sharp ","Excellent ","Honored ","Rugged ", "Strengthened ","Stiff ", "Robust ", "Lush ","Waxed ","Bustling ","Lucky ", "Jerry's ", "Dirty ", "Fabled ", "Suspicious ", "Gilded ", "Warped ", "Withered ", "Bulky ", "Stellar ", "Heated ", "Ambered ", "Fruitful ", "Magnetic ", "Fleet ", "Mithraic ", "Auspicious ", "Refined ", "Headstrong ", "Precise ", "Spiritual ", "Moil ", "Blessed ", "Toil ", "Bountiful ", "Candied ", "Submerged ", "Reinforced ", "Cubic ", "Warped ", "Undead ", "Ridiculous ", "Necrotic ", "Spiked ", "Jaded ", "Loving ", "Perfect ", "Renowned ", "Giant ", "Empowered ", "Ancient ", "Sweet ", "Silky ", "Bloody ", "Shaded ", "Gentle ", "Odd ", "Fast ", "Fair ", "Epic ", "Sharp ", "Heroic ", "Spicy ", "Legendary ", "Deadly ", "Fine ", "Grand ", "Hasty ", "Neat ", "Rapid ", "Unreal ", "Awkward ", "Rich ", "Clean ", "Fierce ", "Heavy ", "Light ", "Mythic ", "Pure ", "Smart ", "Titanic ", "Wise ", "Bizarre ", "Itchy ", "Ominous ", "Pleasant ", "Pretty ", "Shiny ", "Simple ", "Strange ", "Vivid ", "Godly ", "Demonic ","Brilliant ", "Forceful ", "Hurtful ", "Keen ", "Strong ", "Superior ", "Unpleasant ", "Zealous "]
+REFORGES = [" ✦", "⚚ ", "◆ "," ✪", "✪","➋", "➌", "Salty ","➊","Menacing ","Very ","Festive ","Astute ","Blended ","Thicc ", "Sturdy ", "Glistening ", "Honored ","Rugged ","Sharp ","Excellent ","Honored ","Rugged ", "Strengthened ","Stiff ", "Robust ", "Lush ","Waxed ","Bustling ","Lucky ", "Jerry's ", "Dirty ", "Fabled ", "Suspicious ", "Gilded ", "Warped ", "Withered ", "Bulky ", "Stellar ", "Heated ", "Ambered ", "Fruitful ", "Magnetic ", "Fleet ", "Mithraic ", "Auspicious ", "Refined ", "Headstrong ", "Precise ", "Spiritual ", "Moil ", "Blessed ", "Toil ", "Bountiful ", "Candied ", "Submerged ", "Reinforced ", "Cubic ", "Warped ", "Undead ", "Ridiculous ", "Necrotic ", "Spiked ", "Jaded ", "Loving ", "Perfect ", "Renowned ", "Giant ", "Empowered ", "Ancient ", "Sweet ", "Silky ", "Bloody ", "Shaded ", "Gentle ", "Odd ", "Fast ", "Fair ", "Epic ", "Sharp ", "Heroic ", "Spicy ", "Legendary ", "Deadly ", "Fine ", "Grand ", "Hasty ", "Neat ", "Rapid ", "Unreal ", "Awkward ", "Rich ", "Clean ", "Fierce ", "Heavy ", "Light ", "Mythic ", "Pure ", "Smart ", "Titanic ", "Wise ", "Bizarre ", "Itchy ", "Ominous ", "Pleasant ", "Pretty ", "Shiny ", "Simple ", "Strange ", "Vivid ", "Godly ", "Demonic ","Brilliant ", "Forceful ", "Hurtful ", "Keen ", "Strong ", "Superior ", "Unpleasant ", "Zealous "]
 
 # Constant for the lowest priced item you want to be shown to you; feel free to change this
 LOWEST_PRICE = 250000
@@ -33,7 +33,7 @@ NOTIFY = False
 Minimum_Median_Margin = 1.2
 
 # Constant for the lowest percent difference you want to be shown to you; feel free to change this
-LOWEST_PERCENT_MARGIN = 0.5
+LOWEST_PERCENT_MARGIN = 0.8
 
 START_TIME = default_timer()
 
@@ -64,13 +64,11 @@ def fetch(session, page):
                         prices[index] = [auction['starting_bid'], float("inf")]
                     # Compare median with the item price
                     if  prices[index][1] > LOWEST_PRICE and prices[index][0]/prices[index][1] < LOWEST_PERCENT_MARGIN and auction['start']+60000 > now:
-                        cofl_data = fetch_cofl(auction['item_name'])
-                        #remove if name contains "New Year Cake" or any unwanted flips
-
-                        # if "New Year" not in auction['item_name'] and "Talbot" not in auction['item_name'] and "Rune" not in auction['item_name'] and "Restoration" not in auction['item_name']:
-                        #         cofl_data = fetch_cofl(auction['item_name'])
-                        # else:
-                        #     cofl_data = None
+                        #remove if name contains "New Year Cake"
+                        if "New Year" not in auction['item_name'] and "Talbot" not in auction['item_name'] and "Rune" not in auction['item_name'] and "Restoration" not in auction['item_name']:
+                                cofl_data = fetch_cofl(auction['item_name'])
+                        else:
+                            cofl_data = None
                         if cofl_data is not None:
                             median_price = cofl_data['median']
                         else:
@@ -117,8 +115,6 @@ async def get_data_asynchronous():
             for response in await asyncio.gather(*tasks):
                 pass
 
-
-
 def main():
     # Resets variables
     global results, prices, START_TIME
@@ -143,14 +139,136 @@ def main():
                 app_icon = None,
                 timeout = 4,
             )
+        
         df=pd.DataFrame(['/viewauction ' + str(max(results, key=lambda entry:entry[1])[0][0])])
         df.to_clipboard(index=False,header=False) # copies most valuable auction to clipboard (usually just the only auction cuz very uncommon for there to be multiple
+        game_window.activate()
+        pyautogui.press('t')
+        time.sleep(random.randint(50, 70) / 1000)
+        pyautogui.keyDown('ctrl')
+        time.sleep(random.randint(10, 70) / 1000)
+        pyautogui.press('v')
+        time.sleep(random.randint(10, 70) / 1000)
+        pyautogui.keyUp('ctrl')
+        time.sleep(random.randint(10, 70) / 1000)
+        pyautogui.press('enter')
+        time.sleep(random.randint(50, 150) / 1000)
+        # pyautogui.click(button='left', x=random.randint(943,977), y=random.randint(451, 485))
+        # time.sleep(random.randint(50, 150) / 1000)
+        # pyautogui.click(button='left', x=random.randint(943,977), y=random.randint(451, 485))
+        if Option == "R":
+            r2,g2,b2 = pyautogui.pixel(1098, 329)
+        else:
+            r2,g2,b2 = pyautogui.pixel(-460, 186)
+        count = 0
+        #check for ah menu open by scaanning for NEU logo
+        while (r2 != 0 and g2 != 0 and b2 != 0) and count < 15:
+            pyautogui.press('t')
+            time.sleep(random.randint(10, 70) / 1000)
+            pyautogui.press('up')
+            time.sleep(random.randint(10, 70) / 1000)
+            pyautogui.press('enter')
+            time.sleep(random.randint(10, 70) / 1000)
+            #check for ah menu open by scanning for NEU logo
+            if Option == "R":
+                r2,g2,b2 = pyautogui.pixel(1098, 329)
+            else:
+                r2,g2,b2 = pyautogui.pixel(-460, 186)
+            print(r2,g2,b2)
+            count += 1
+        #click the buy button
+        time.sleep(random.randint(50, 150) / 1000)
+        if Option == "R":
+            pyautogui.click(button='left', x=960, y=474)
+        else:
+            pyautogui.click(button='left', x=-600, y=331)
+        time.sleep(random.randint(50, 150) / 1000)
+        #check for bed (auction not ready)
+        if Option == "R":
+            r1,g1,b1 = pyautogui.pixel(957, 463)
+        else:
+            r1,g1,b1 = pyautogui.pixel(-603, 322)
+        count = 0
+        print(r1,g1,b1)
+        #check for bed (auction not ready)
+        while (r1 == 198 and g1 == 138 and b1 == 138):
+            if Option == "R":
+                pyautogui.click(button='left', x=960, y=474)
+                time.sleep(random.randint(100, 150) / 1000)
+                r1,g1,b1 = pyautogui.pixel(957, 463)
+            else:
+                pyautogui.click(button='left', x=-600, y=331)
+                time.sleep(random.randint(100, 150) / 1000)
+                r1,g1,b1 = pyautogui.pixel(-603, 322)
+            count += 1
+        #click the green buy button
+        if Option == "R":
+            pyautogui.click(button='left', x=960, y=474)
+        else:
+            pyautogui.click(button='left', x=-600, y=331)
+        count = 0
+        # r,g,b = pyautogui.pixel(894, 452)
+        #check if not gold
+        # if (r != 90 and g != 92 and b != 89):
+        #     pyautogui.click(button='left', x=random.randint(943,977), y=random.randint(451, 485))
+        #     time.sleep(random.randint(50, 150) / 1000)
+        # else:
+        #     pyautogui.press('escape')
+        time.sleep(random.randint(50, 150) / 1000)
+        if Option == "R":
+            pyautogui.click(button='left', x=random.randint(870,905), y=random.randint(432,466))
+            time.sleep(random.randint(50, 150) / 1000)
+            pyautogui.click(button='left', x=random.randint(870,905), y=random.randint(432,466))
+        else:
+            pyautogui.click(button='left', x=random.randint(-690,-656), y=random.randint(291,324))
+            time.sleep(random.randint(50, 150) / 1000)
+            pyautogui.click(button='left', x=random.randint(-690,-656), y=random.randint(291,324))
+        # r,g,b = pyautogui.pixel(825, 472)
+        #check if menu still open
+        # if r2 == g2 and g2 == b2:
+        #     time.sleep(random.randint(100, 200) / 1000)
+        #     pyautogui.press('escape')
+
+        #start zealots
+        time.sleep(random.randint(200, 300) / 1000)
+        #set clipboard to /ez-startscript melee:zealot
+        if Macro == "Z":
+            df=pd.DataFrame(['/ez-startscript melee:zealot'])
+        else:
+            df=pd.DataFrame(['/ez-startscript fishing:1'])
+        df.to_clipboard(index=False,header=False)
+        pyautogui.press('t')
+        time.sleep(random.randint(50, 70) / 1000)
+        pyautogui.keyDown('ctrl')
+        time.sleep(random.randint(10, 70) / 1000)
+        pyautogui.press('v')
+        time.sleep(random.randint(10, 70) / 1000)
+        pyautogui.keyUp('ctrl')
+        time.sleep(random.randint(10, 70) / 1000)
+        pyautogui.press('enter')
+
         done = default_timer() - START_TIME
         if op: winsound.Beep(500, 500) # emits a frequency 500hz, for 500ms
         for result in results:
             median_price = (fetch_cofl(result[0][1])['median'])
             print("Auction UUID: " + str(result[0][0]) + " | Item Name: " + str(result[0][1]) + " | Item price: {:,}".format(result[0][2]) + " | Median Item Price: {:,.2f}".format(median_price) + " | Second lowest BIN: {:,}".format(result[1]) + " | Time to refresh AH: " + str(round(done, 2)))
         print("\nLooking for auctions...")
+
+
+Option = input("Left Monitor or Right Monitor? (L/R): ")
+Macro = input("Zealot or Fishing (Z/F): ")
+if Macro == "Z":
+    print("Zealot Macro Selected")
+else:
+    print("Fishing Macro Selected")
+if Option == "R":
+    print("Right Monitor Selected")
+else:
+    print("Left Monitor Selected")
+
+game_window = gw.getWindowsWithTitle('Taunahi')[0]
+
+
 
 print("Looking for auctions...")
 main()
