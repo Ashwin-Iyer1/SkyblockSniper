@@ -1,0 +1,16 @@
+[
+{
+  "modid": "AHflip",
+  "name": "My Auto AH Flip",
+  "description": "Allows you to auto buy on AH.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ExampleDude"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
