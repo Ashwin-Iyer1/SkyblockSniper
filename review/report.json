@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "snapshotTime": 1792108800000,
+  "evaluatedAt": 1792108800000,
+  "auctionCount": 16,
+  "groupCount": 6,
+  "excluded": {
+    "insufficient_comparable_groups": 3,
+    "invalid_or_expired": 1,
+    "not_active_bin": 1
+  },
+  "parameters": {
+    "minimumPrice": 250000,
+    "maximumRatio": 0.65,
+    "minimumComparables": 2,
+    "feeRate": 0.02,
+    "maxListingAgeSeconds": 300
+  },
+  "candidates": [
+    {
+      "uuid": "synthetic-drill-0",
+      "name": "Refined Example Drill",
+      "tier": "EPIC",
+      "fingerprint": "f52bec7c4da6ecbe1bd61ff99bc7633130f50ed4a3d4085b91ca495330859c6e",
+      "price": 600000,
+      "nextListing": 1500000,
+      "peerMedian": 1550000,
+      "peerCount": 3,
+      "ratioToNext": 0.4,
+      "listingAgeSeconds": 30.0,
+      "conditionalNet": 870000.0,
+      "peers": [
+        {
+          "uuid": "synthetic-drill-1",
+          "price": 1500000
+        },
+        {
+          "uuid": "synthetic-drill-2",
+          "price": 1550000
+        },
+        {
+          "uuid": "synthetic-drill-3",
+          "price": 1700000
+        }
+      ]
+    },
+    {
+      "uuid": "synthetic-blade-0",
+      "name": "Sharp Example Blade",
+      "tier": "EPIC",
+      "fingerprint": "f52bec7c4da6ecbe1bd61ff99bc7633130f50ed4a3d4085b91ca495330859c6e",
+      "price": 300000,
+      "nextListing": 800000,
+      "peerMedian": 850000,
+      "peerCount": 3,
+      "ratioToNext": 0.375,
+      "listingAgeSeconds": 30.0,
+      "conditionalNet": 484000.0,
+      "peers": [
+        {
+          "uuid": "synthetic-blade-1",
+          "price": 800000
+        },
+        {
+          "uuid": "synthetic-blade-2",
+          "price": 850000
+        },
+        {
+          "uuid": "synthetic-blade-3",
+          "price": 900000
+        }
+      ]
+    }
+  ],
+  "provenance": "Synthetic invented auction listings. No real auction UUIDs or market prices."
+}

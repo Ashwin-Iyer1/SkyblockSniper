@@ -1,0 +1,197 @@
+{
+  "provenance": "Synthetic invented auction listings. No real auction UUIDs or market prices.",
+  "pages": [
+    {
+      "success": true,
+      "page": 0,
+      "totalPages": 2,
+      "lastUpdated": 1792108800000,
+      "auctions": [
+        {
+          "uuid": "synthetic-blade-0",
+          "item_name": "Sharp Example Blade",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 300000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-blade-1",
+          "item_name": "Sharp Example Blade",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 800000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-blade-2",
+          "item_name": "Sharp Example Blade",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 850000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-blade-3",
+          "item_name": "Sharp Example Blade",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 900000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-drill-0",
+          "item_name": "Refined Example Drill",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 600000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-drill-1",
+          "item_name": "Refined Example Drill",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 1500000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-drill-2",
+          "item_name": "Refined Example Drill",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 1550000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-drill-3",
+          "item_name": "Refined Example Drill",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 1700000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        }
+      ]
+    },
+    {
+      "success": true,
+      "page": 1,
+      "totalPages": 2,
+      "lastUpdated": 1792108800000,
+      "auctions": [
+        {
+          "uuid": "synthetic-wand-0",
+          "item_name": "Example Wand",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 400000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-wand-1",
+          "item_name": "Example Wand",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 420000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-wand-2",
+          "item_name": "Example Wand",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 430000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-pet-low",
+          "item_name": "[Lvl 1] Example Pet",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 300000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-pet-high",
+          "item_name": "[Lvl 100] Example Pet",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 1500000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-upgrade",
+          "item_name": "Sharp Example Blade \u272a\u272a",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 1000000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        },
+        {
+          "uuid": "synthetic-expired",
+          "item_name": "Example Wand",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": false,
+          "starting_bid": 1000,
+          "start": 1792108770000,
+          "end": 1792108799999
+        },
+        {
+          "uuid": "synthetic-claimed",
+          "item_name": "Example Wand",
+          "tier": "EPIC",
+          "item_lore": "Damage: +100",
+          "bin": true,
+          "claimed": true,
+          "starting_bid": 1000,
+          "start": 1792108770000,
+          "end": 1792112400000
+        }
+      ]
+    }
+  ]
+}
